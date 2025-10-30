@@ -5,9 +5,11 @@ import { serve } from '@hono/node-server';
 import 'dotenv/config';
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
+import { logger } from 'hono/logger';
 
 const app = new Hono().basePath('/api');
 
+app.use(logger());
 app.use('*', cors());
 
 app.get('/', c => c.text('Hello, World!'));
